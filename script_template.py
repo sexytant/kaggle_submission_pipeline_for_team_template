@@ -1,3 +1,5 @@
+from . import WORK_DIR
+
 import gzip
 import base64
 import os
@@ -21,4 +23,4 @@ def run(command):
 
 
 run('python setup.py develop --install-dir /kaggle/working')
-run('python easy_gold/main.py')
+run(f'python {WORK_DIR}/main.py')

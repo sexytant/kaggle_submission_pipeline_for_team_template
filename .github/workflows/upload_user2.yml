@@ -1,9 +1,9 @@
 name: Upload
 
 on:
-  pull_request:
+  push:
     branches:
-      - master
+      - user2/**
 
 jobs:
   upload:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7]
+        python-version: [3.9]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,18 +27,18 @@ jobs:
         env:
           # Do not leak your credentials.
           # Set Github Secrets
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME_2 }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY_2 }}
         with:
           # README.md says the slug is required, but it's the id
           # https://github.com/harupy/push-kaggle-kernel/commit/266039f1ade2701a789e2c9b1e6cc360659edeff
-          id: {username}/{kernel_slug}
-          title: hoge_huga
+          id: ${{ secrets.KAGGLE_USERNAME_2 }}/${{ github.event.repository.name }}
+          title: ${{ github.event.repository.name }}
           code_file: ./build/script.py
           language: python
           kernel_type: script
           # Do not share high-scoring kernels.
-          is_private: false
+          is_private: true
           # ex: petfinder-adoption-prediction
           competition_sources: |
             {competition_slug}

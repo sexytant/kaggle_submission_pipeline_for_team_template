@@ -1,6 +1,7 @@
+from . import WORK_DIR
 from setuptools import setup
 
 setup(
-    name='easy_gold',
-    packages=['easy_gold'],
+    name=WORK_DIR,
+    packages=[WORK_DIR],
 )
