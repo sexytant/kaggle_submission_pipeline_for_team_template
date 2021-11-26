@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - user2/**
+      - develep/**
 
 jobs:
   upload:
@@ -34,9 +35,11 @@ jobs:
           # https://github.com/harupy/push-kaggle-kernel/commit/266039f1ade2701a789e2c9b1e6cc360659edeff
           id: ${{ secrets.KAGGLE_USERNAME_2 }}/${{ github.event.repository.name }}
           title: ${{ github.event.repository.name }}
+          # kernel type: script | code_file: ./build/script.py
+          # kernel type: notebook | code_file: ./easy_gold/main.ipynb
+          kernel_type: script
           code_file: ./build/script.py
           language: python
-          kernel_type: script
           # Do not share high-scoring kernels.
           is_private: true
           # ex: petfinder-adoption-prediction

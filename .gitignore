@@ -1,1 +1,16 @@
+# Useless file
 /build/script.py
+
+# OS cache
+.DS_Store
+
+# python cache
+**/.pyc
+**/__pycache__
+
+# jupyter files
+.ipynb_checkpoints
+
+# Kaggle files
+/input/**/*.csv
+**/submission.csv
